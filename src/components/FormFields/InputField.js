@@ -21,25 +21,32 @@ const InputField = ({
   onBlur,
   errorLabel,
   errorClassname,
-  errorName
+  errorName,
+  graphicDiveClass,
+  graphicClassname,
+  placeholder
 }) => {
   return (
-    <FormGroup>
-      <div className="form-group">
-        <Label htmlFor={htmlFor}>{label}</Label>
-        <Input
-          name={name}
-          type={type}
-          className={className}
-          value={value}
-          onChange={onChange}
-          onBlur={onBlur}
-        />
-        <div name={errorName} className={errorClassname}>
-          {errorLabel}
-        </div>
+    //  <FormGroup>
+    <div className="form-group">
+      {/* <Label htmlFor={htmlFor}>{label}</Label> */}
+      <div className={graphicDiveClass}>
+        <i className={graphicClassname}></i>
       </div>
-    </FormGroup>
+      <Input
+        name={name}
+        type={type}
+        className={className}
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
+        placeholder={placeholder}
+      />
+      <div name={errorName} className={errorClassname}>
+        {errorLabel}
+      </div>
+    </div>
+    // </FormGroup>
   );
 };
 

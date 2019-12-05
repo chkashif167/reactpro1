@@ -25,8 +25,7 @@ const Register = () => {
       <Formik
         initialValues={{
           userName: "",
-          firstName: "",
-          lastName: "",
+          fullName: "",
           email: "",
           password: "",
           confirmPassword: ""
@@ -35,8 +34,8 @@ const Register = () => {
           userName: Yup.string()
             .required("User Name is required")
             .min(6, "User Name must be at least 6 characters"),
-          firstName: Yup.string().required("First Name is required"),
-          lastName: Yup.string().required("Last Name is required"),
+          fullName: Yup.string().required("Full Name is required"),
+
           email: Yup.string()
             .email("Email is invalid")
             .required("Email is required"),
@@ -70,7 +69,7 @@ const Register = () => {
               {console.log(errors)}
               <InputField
                 htmlFor="userName"
-                label="User Name"
+                // label="User Name"
                 type="text"
                 name="userName"
                 className={
@@ -82,40 +81,29 @@ const Register = () => {
                 value={values.userName}
                 errorlabel={errors.userName}
                 errorClassname="invalid-feedback"
+                graphicDiveClass="graphicDiv"
+                graphicClassname="icon graphic username"
+                placeholder="User Name"
               />
 
               <InputField
-                htmlFor="firstName"
-                label="First Name"
+                htmlFor="userName"
+                // label="User Name"
                 type="text"
-                name="firstName"
+                name="fullName"
                 className={
                   "form-control" +
-                  (errors.firstName && touched.firstName ? " is-invalid" : "")
+                  (errors.fullName && touched.fullName ? " is-invalid" : "")
                 }
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.firstName}
-                errorlabel={errors.firstName}
+                value={values.userName}
+                errorlabel={errors.userName}
                 errorClassname="invalid-feedback"
+                graphicDiveClass="graphicDiv"
+                graphicClassname="icon graphic fullname"
+                placeholder="Full Name"
               />
-
-              <div className="form-group">
-                <label htmlFor="lastName">Last Name</label>
-                <Field
-                  name="lastName"
-                  type="text"
-                  className={
-                    "form-control" +
-                    (errors.lastName && touched.lastName ? " is-invalid" : "")
-                  }
-                />
-                <ErrorMessage
-                  name="lastName"
-                  component="div"
-                  className="invalid-feedback"
-                />
-              </div>
               <div className="form-group">
                 <label htmlFor="email">Email</label>
                 <Field
