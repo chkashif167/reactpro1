@@ -55,38 +55,25 @@ const Register = () => {
           alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
         }}
         render={props => {
-          const {
-            handleBlur,
-            handleChange,
-            values,
-            errors,
-            status,
-            touched
-          } = props;
+          const { handleBlur, handleChange, values, errors, touched } = props;
           return (
             <Form className="register_form">
-              <h1> Register</h1>
-              {console.log(errors)}
+              <h1>Register</h1>
+              {console.log(errors, touched)}
               <InputField
-                htmlFor="userName"
-                type="text"
+                label="User Name"
                 name="userName"
-                className={
-                  "form-control" +
-                  (errors.userName && touched.userName ? " is-invalid" : "")
-                }
+                className={errors.userName && touched.userName && "is-invalid"}
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.userName}
-                errorlabel={errors.userName}
-                errorClassname="invalid-feedback"
-                graphicDiveClass="graphicDiv"
-                graphicClassname="icon graphic username"
+                errorLabel={errors.userName}
+                iconClass="username"
                 placeholder="User Name"
               />
 
               <InputField
-                htmlFor="fullName"
+                label="Full Name"
                 type="text"
                 name="fullName"
                 className={
@@ -98,8 +85,7 @@ const Register = () => {
                 value={values.fullName}
                 errorlabel={errors.fullName}
                 errorClassname="invalid-feedback"
-                graphicDiveClass="graphicDiv"
-                graphicClassname="icon graphic fullname"
+                iconClass="fullname"
                 placeholder="Full Name"
               />
               <InputField

@@ -1,52 +1,36 @@
 import React from "react";
-import {
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Container,
-  Col,
-  ErrorMessage,
-  Field
-} from "reactstrap";
+import { FormGroup, Label, Input, FormFeedback } from "reactstrap";
+import "./input-field.scss";
 const InputField = ({
   label,
-  htmlFor,
-  type,
+  type = "text",
   name,
   className,
   value,
   onChange,
   onBlur,
   errorLabel,
-  errorClassname,
-  errorName,
-  graphicDiveClass,
-  graphicClassname,
+  iconClass,
   placeholder
 }) => {
+  console.log(errorLabel);
   return (
-    //  <FormGroup>
-    <div className="form-group">
-      {/* <Label htmlFor={htmlFor}>{label}</Label> */}
-      <div className={graphicDiveClass}>
-        <i className={graphicClassname}></i>
+    <FormGroup className="input-field-component">
+      <Label className="field-label">{label}</Label>
+      <div className="field-wrap">
+        <i className={`icon graphic ${iconClass}`}></i>
+        <Input
+          name={name}
+          type={type}
+          className={className}
+          value={value}
+          onChange={onChange}
+          onBlur={onBlur}
+          placeholder={placeholder}
+        />
+        <FormFeedback>{errorLabel}</FormFeedback>
       </div>
-      <Input
-        name={name}
-        type={type}
-        className={className}
-        value={value}
-        onChange={onChange}
-        onBlur={onBlur}
-        placeholder={placeholder}
-      />
-      <div name={errorName} className={errorClassname}>
-        {errorLabel}
-      </div>
-    </div>
-    // </FormGroup>
+    </FormGroup>
   );
 };
 

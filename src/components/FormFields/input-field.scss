@@ -1,0 +1,27 @@
+.input-field-component {
+  .field-wrap {
+    position: relative;
+  }
+  .icon {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 11px;
+    left: 10px;
+  }
+  .username {
+    background: url("../../images/icons/1x/single-00.png") no-repeat;
+  }
+  .fullname {
+    background: url("../../images/icons/1x/single-01.png") no-repeat;
+  }
+  .email {
+    background: url("../../images/icons/1x/email-84.png") no-repeat;
+  }
+  .password {
+    background: url("../../images/icons/1x/lock-open.png") no-repeat;
+  }
+  .form-control {
+    padding-left: 35px;
+  }
+}
