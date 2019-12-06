@@ -12,10 +12,14 @@ import * as Yup from "yup";
 import { Button, FormGroup, Label, Input, Container, Col } from "reactstrap";
 import "./Login.scss";
 import userRegister from "../../store/reducers/registerReducer";
-
+import { addUserAction } from "../../store/reducers/registerReducer.js";
+import InputField from "../../components/FormFields/InputField.js";
 const Login = () => {
   //const [user, setUser] = useState("");
   //const usedispatch = useDispatch();
+  const [user, setUser] = useState("");
+  const usedispatch = useDispatch();
+  const addUser = user => usedispatch(addUserAction(user));
 
   const ShowUser = useSelector(state => state.userRegister.fullname);
 

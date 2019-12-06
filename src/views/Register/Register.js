@@ -95,8 +95,8 @@ const Register = () => {
                 }
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.userName}
-                errorlabel={errors.userName}
+                value={values.fullName}
+                errorlabel={errors.fullName}
                 errorClassname="invalid-feedback"
                 graphicDiveClass="graphicDiv"
                 graphicClassname="icon graphic fullname"
@@ -112,8 +112,8 @@ const Register = () => {
                 }
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.userName}
-                errorlabel={errors.userName}
+                value={values.email}
+                errorlabel={errors.email}
                 errorClassname="invalid-feedback"
                 graphicDiveClass="graphicDiv"
                 graphicClassname="icon graphic email"
@@ -130,12 +130,12 @@ const Register = () => {
                 }
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.userName}
-                errorlabel={errors.userName}
+                value={values.password}
+                errorlabel={errors.password}
                 errorClassname="invalid-feedback"
                 graphicDiveClass="graphicDiv"
                 graphicClassname="icon graphic password"
-                placeholder="Password"
+                placeholder="Pssword"
               />
 
               <div className="form-group">
