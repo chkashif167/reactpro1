@@ -69,7 +69,6 @@ const Register = () => {
               {console.log(errors)}
               <InputField
                 htmlFor="userName"
-                // label="User Name"
                 type="text"
                 name="userName"
                 className={
@@ -87,8 +86,7 @@ const Register = () => {
               />
 
               <InputField
-                htmlFor="userName"
-                // label="User Name"
+                htmlFor="fullName"
                 type="text"
                 name="fullName"
                 className={
@@ -104,38 +102,42 @@ const Register = () => {
                 graphicClassname="icon graphic fullname"
                 placeholder="Full Name"
               />
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <Field
-                  name="email"
-                  type="text"
-                  className={
-                    "form-control" +
-                    (errors.email && touched.email ? " is-invalid" : "")
-                  }
-                />
-                <ErrorMessage
-                  name="email"
-                  component="div"
-                  className="invalid-feedback"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <Field
-                  name="password"
-                  type="password"
-                  className={
-                    "form-control" +
-                    (errors.password && touched.password ? " is-invalid" : "")
-                  }
-                />
-                <ErrorMessage
-                  name="password"
-                  component="div"
-                  className="invalid-feedback"
-                />
-              </div>
+              <InputField
+                htmlFor="email"
+                type="email"
+                name="email"
+                className={
+                  "form-control" +
+                  (errors.email && touched.email ? " is-invalid" : "")
+                }
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.userName}
+                errorlabel={errors.userName}
+                errorClassname="invalid-feedback"
+                graphicDiveClass="graphicDiv"
+                graphicClassname="icon graphic email"
+                placeholder="Email"
+              />
+
+              <InputField
+                htmlFor="password"
+                type="password"
+                name="password"
+                className={
+                  "form-control" +
+                  (errors.password && touched.password ? " is-invalid" : "")
+                }
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.userName}
+                errorlabel={errors.userName}
+                errorClassname="invalid-feedback"
+                graphicDiveClass="graphicDiv"
+                graphicClassname="icon graphic password"
+                placeholder="Password"
+              />
+
               <div className="form-group">
                 <label htmlFor="confirmPassword">Confirm Password</label>
                 <Field

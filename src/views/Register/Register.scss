@@ -36,7 +36,15 @@
   i.icon.fullname {
     background: url("./../../images/icons/1x/single-01.png") no-repeat;
   }
-  input[type="text"] {
+  i.icon.email {
+    background: url("./../../images/icons/1x/email-84.png") no-repeat;
+  }
+  i.icon.password {
+    background: url("./../../images/icons/1x/lock-open.png") no-repeat;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
     padding-left: 35px;
   }
 }
