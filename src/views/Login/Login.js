@@ -34,9 +34,7 @@ const Login = () => {
           email: Yup.string()
             .email("Email is invalid")
             .required("Email is required"),
-          password: Yup.string()
-            .min(6, "Password must be at least 6 characters")
-            .required("Password is required")
+          password: Yup.string().required("Password is required")
         })}
         onSubmit={fields => {
           addUser(fields);
@@ -58,6 +56,7 @@ const Login = () => {
 
               <InputField
                 htmlFor="email"
+                label="Email"
                 type="email"
                 name="email"
                 className={
@@ -66,16 +65,16 @@ const Login = () => {
                 }
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.userName}
-                errorlabel={errors.userName}
+                value={values.email}
+                errorLabel={errors.email}
                 errorClassname="invalid-feedback"
-                graphicDiveClass="graphicDiv"
-                graphicClassname="icon graphic email"
+                iconClass=" email"
                 placeholder="Email"
               />
 
               <InputField
                 htmlFor="password"
+                label="Password"
                 type="password"
                 name="password"
                 className={
@@ -84,11 +83,10 @@ const Login = () => {
                 }
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.userName}
-                errorlabel={errors.userName}
+                value={values.password}
+                errorLabel={errors.password}
                 errorClassname="invalid-feedback"
-                graphicDiveClass="graphicDiv"
-                graphicClassname="icon graphic password"
+                iconClass=" password"
                 placeholder="Password"
               />
 

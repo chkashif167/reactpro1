@@ -34,16 +34,17 @@ const Register = () => {
           userName: Yup.string()
             .required("User Name is required")
             .min(6, "User Name must be at least 6 characters"),
+
           fullName: Yup.string().required("Full Name is required"),
 
           email: Yup.string()
             .email("Email is invalid")
             .required("Email is required"),
           password: Yup.string()
-            .min(6, "Password must be at least 6 characters")
+            .min(8, "Password must be at least 8 characters")
             .required("Password is required")
             .matches(
-              /^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{8,}$/,
+              /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
               "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
             ),
           confirmPassword: Yup.string()
@@ -63,7 +64,7 @@ const Register = () => {
               <InputField
                 label="User Name"
                 name="userName"
-                className={errors.userName && touched.userName && "is-invalid"}
+                className={errors.userName && touched.userName && " is-invalid"}
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.userName}
@@ -74,21 +75,17 @@ const Register = () => {
 
               <InputField
                 label="Full Name"
-                type="text"
                 name="fullName"
-                className={
-                  "form-control" +
-                  (errors.fullName && touched.fullName ? " is-invalid" : "")
-                }
+                className={errors.fullName && touched.fullName && " is-invalid"}
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.fullName}
-                errorlabel={errors.fullName}
-                errorClassname="invalid-feedback"
+                errorLabel={errors.fullName}
                 iconClass="fullname"
                 placeholder="Full Name"
               />
               <InputField
+                label="Email"
                 htmlFor="email"
                 type="email"
                 name="email"
@@ -99,14 +96,14 @@ const Register = () => {
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.email}
-                errorlabel={errors.email}
+                errorLabel={errors.email}
                 errorClassname="invalid-feedback"
-                graphicDiveClass="graphicDiv"
-                graphicClassname="icon graphic email"
+                iconClass="email"
                 placeholder="Email"
               />
 
               <InputField
+                label="Password"
                 htmlFor="password"
                 type="password"
                 name="password"
@@ -117,31 +114,32 @@ const Register = () => {
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.password}
-                errorlabel={errors.password}
+                errorLabel={errors.password}
                 errorClassname="invalid-feedback"
-                graphicDiveClass="graphicDiv"
-                graphicClassname="icon graphic password"
-                placeholder="Pssword"
+                iconClass="password"
+                placeholder="Password"
               />
 
-              <div className="form-group">
-                <label htmlFor="confirmPassword">Confirm Password</label>
-                <Field
-                  name="confirmPassword"
-                  type="password"
-                  className={
-                    "form-control" +
-                    (errors.confirmPassword && touched.confirmPassword
-                      ? " is-invalid"
-                      : "")
-                  }
-                />
-                <ErrorMessage
-                  name="confirmPassword"
-                  component="div"
-                  className="invalid-feedback"
-                />
-              </div>
+              <InputField
+                label="Confirm Password"
+                htmlFor="confirmPassword"
+                type="password"
+                name="confirmPassword"
+                className={
+                  "form-control" +
+                  (errors.confirmPassword && touched.confirmPassword
+                    ? " is-invalid"
+                    : "")
+                }
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.confirmPassword}
+                errorLabel={errors.confirmPassword}
+                errorClassname="invalid-feedback"
+                iconClass="password"
+                placeholder="Confirm Password"
+              />
+
               <div className="form-group">
                 <button type="submit" className="btn btn-primary mr-2">
                   Register

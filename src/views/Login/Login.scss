@@ -19,32 +19,4 @@
       no-repeat;
     background-position: 0 -70px;
   }
-  .form-group {
-    position: relative;
-  }
-  i.icon {
-    height: 20px;
-    width: 20px;
-    z-index: 999;
-    position: absolute;
-    left: 11px;
-    top: 12px;
-  }
-  i.icon.username {
-    background: url("./../../images/icons/1x/single-00.png") no-repeat;
-  }
-  i.icon.fullname {
-    background: url("./../../images/icons/1x/single-01.png") no-repeat;
-  }
-  i.icon.email {
-    background: url("./../../images/icons/1x/email-84.png") no-repeat;
-  }
-  i.icon.password {
-    background: url("./../../images/icons/1x/lock-open.png") no-repeat;
-  }
-  input[type="text"],
-  input[type="email"],
-  input[type="password"] {
-    padding-left: 35px;
-  }
 }
