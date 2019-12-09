@@ -53,7 +53,18 @@ const Register = () => {
         })}
         onSubmit={fields => {
           addUser(fields);
-          alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
+          // alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
+
+          fetch("https://reqres.in/api/register", {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(fields)
+          }).then(Response => {
+            console.log(Response);
+          });
         }}
         render={props => {
           const { handleBlur, handleChange, values, errors, touched } = props;
