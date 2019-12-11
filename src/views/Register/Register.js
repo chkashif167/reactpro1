@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 import {
   Formik,
@@ -54,16 +55,9 @@ const Register = () => {
         onSubmit={fields => {
           addUser(fields);
           // alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
-
-          fetch("https://reqres.in/api/register", {
-            method: "POST",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(fields)
-          }).then(Response => {
-            console.log(Response);
+          axios.post(`https://reqres.in/api/users`, { fields }).then(res => {
+            console.log(res);
+            console.log(res.data);
           });
         }}
         render={props => {
