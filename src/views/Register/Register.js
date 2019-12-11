@@ -10,6 +10,7 @@ import {
   handleBlur,
   handleChange
 } from "formik";
+import { Button, FormGroup, Label, Input, Container, Col } from "reactstrap";
 import * as Yup from "yup";
 import InputField from "../../components/FormFields/InputField.js";
 import "./Register.scss";
@@ -146,12 +147,10 @@ const Register = () => {
               />
 
               <div className="form-group">
-                <button type="submit" className="btn btn-primary mr-2">
+                <Button color="primary">Login</Button>{" "}
+                <Button type="reset" color="secondary">
                   Register
-                </button>
-                <button type="reset" className="btn btn-secondary">
-                  Reset
-                </button>
+                </Button>
               </div>
             </Form>
           );
