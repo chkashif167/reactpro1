@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 //view
 import Home from "../../views/Home/Home";
 import Login from "../../views/Login/Login";

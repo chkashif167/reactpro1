@@ -13,7 +13,6 @@ const InputField = ({
   iconClass,
   placeholder
 }) => {
-  console.log(errorLabel);
   return (
     <FormGroup className="input-field-component">
       <Label className="field-label">{label}</Label>

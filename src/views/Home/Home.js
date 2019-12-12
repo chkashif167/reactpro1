@@ -12,6 +12,7 @@ import {
   Col
 } from "reactstrap";
 import "./home.scss";
+import NavBar from "../../components/Navbar/Navbar";
 
 class Home extends Component {
   render() {

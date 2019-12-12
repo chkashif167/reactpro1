@@ -1,27 +1,15 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  Formik,
-  Field,
-  Form,
-  ErrorMessage,
-  handleBlur,
-  handleChange
-} from "formik";
-
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Button, FormGroup, Label, Input, Container, Col } from "reactstrap";
-import "./Login.scss";
-import userRegister from "../../store/reducers/registerReducer";
-import { addUserAction } from "../../store/reducers/registerReducer.js";
+import { Button } from "reactstrap";
+import "./login.scss";
 import InputField from "../../components/FormFields/InputField.js";
-const Login = () => {
-  const [user, setUser] = useState("");
-  const usedispatch = useDispatch();
-  const addUser = user => usedispatch(addUserAction(user));
-  const ShowUser = useSelector(state => state.userRegister.fullname);
+import { loginApi } from "./loginApi";
+import { withRouter } from "react-router-dom";
+import NavBar from "../../components/Navbar/Navbar";
 
+const Login = ({ history }) => {
+  const [error, setError] = useState("");
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -34,12 +22,19 @@ const Login = () => {
       password: Yup.string().required("Password is required")
     }),
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+      loginApi(values.email, values.password)
+        .then(res => {
+          history.push("/home");
+        })
+        .catch(err => {
+          setError(err.response.data.error);
+        });
     }
   });
 
   return (
     <div className="login_container">
+      <NavBar />
       <form onSubmit={formik.handleSubmit} className="login_form">
         <h1>Login Form</h1>
         <InputField
@@ -60,19 +55,21 @@ const Login = () => {
           label="Password"
           name="password"
           className={
-            formik.errors.password && formik.touched.password && " is-invalid"
+            ((formik.errors.password && formik.touched.password) || error) &&
+            " is-invalid"
           }
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           value={formik.values.password}
-          errorLabel={formik.errors.password}
+          errorLabel={formik.errors.password || error}
           iconClass="password"
           placeholder="Password "
         />
+
         <Button color="primary">Login</Button>
       </form>
     </div>
   );
 };
 
-export default Login;
+export default withRouter(Login);
