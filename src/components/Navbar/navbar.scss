@@ -1,0 +1,36 @@
+.bg-light {
+  background: none !important;
+}
+.header_navigation {
+  background: #080313;
+  padding: 15px 0;
+
+  ul.navLinks li {
+    display: inline;
+    padding: 0 16px;
+  }
+  ul.navLinks li a {
+    color: #fff;
+  }
+
+  ul.navLinks li i {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    position: relative;
+    top: 5px;
+    left: -4px;
+  }
+  ul.navLinks li.home i {
+    background: url("../../images/icons/1x/home-52.png") no-repeat;
+  }
+  ul.navLinks li.login i {
+    background: url("../../images/icons/1x/loginnav.png") no-repeat;
+  }
+  ul.navLinks li.register i {
+    background: url("../../images/icons/1x/registernav.png") no-repeat;
+  }
+  h2.logo a {
+    color: #fff;
+  }
+}
