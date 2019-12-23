@@ -14,27 +14,23 @@ class NavBar extends Component {
 
           <Nav className="ml-auto" navbar>
             <ul className="navLinks">
-              {isLoggedIn && (
-                <NavLink
-                  className="dashboard"
-                  to="/dashbaord"
-                  name="Dashboard"
-                />
-              )}
               <NavLink className="home" to="/" name="Home" />
+              {/* {sessionStorage.getItem("userData") && ( */}
+              <NavLink className="dashboard" to="/dashboard" name="Dashboard" />
+              {/* )} */}
 
-              {!isLoggedIn && (
-                <>
-                  <li className="login">
-                    <i className="icon"></i>
-                    <Link to="/login">Login</Link>
-                  </li>
-                  <li className="register">
-                    <i className="icon"></i>
-                    <Link to="/register">Register</Link>
-                  </li>
-                </>
-              )}
+              {/* {!sessionStorage.getItem("userData") && ( */}
+              <>
+                <li className="login">
+                  <i className="icon"></i>
+                  <Link to="/login">Login</Link>
+                </li>
+                <li className="register">
+                  <i className="icon"></i>
+                  <Link to="/register">Register</Link>
+                </li>
+              </>
+              {/* )} */}
             </ul>
           </Nav>
         </Navbar>

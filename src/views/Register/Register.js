@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 import {
   Formik,
@@ -13,14 +14,15 @@ import {
 import { Button, FormGroup, Label, Input, Container, Col } from "reactstrap";
 import * as Yup from "yup";
 import InputField from "../../components/FormFields/InputField.js";
-import "./Register.scss";
+import "./register.scss";
 
 import { addUserAction } from "../../store/reducers/registerReducer.js";
+import { registerApi } from "./registerApi";
 
 const Register = () => {
   const [user, setUser] = useState("");
   const usedispatch = useDispatch();
-  const addUser = user => usedispatch(addUserAction(user));
+  const addUser = userparam => usedispatch(addUserAction(userparam));
 
   return (
     <div className="register_container">
@@ -44,29 +46,45 @@ const Register = () => {
             .required("Email is required"),
           password: Yup.string()
             .min(8, "Password must be at least 8 characters")
-            .required("Password is required")
-            .matches(
-              /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-              "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
-            ),
+            .required("Password is required"),
+          //.matches(
+          //  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+          //  "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
+          // ),
           confirmPassword: Yup.string()
             .oneOf([Yup.ref("password"), null], "Passwords must match")
             .required("Confirm Password is required")
         })}
         onSubmit={fields => {
+          //console.log(fields);
           addUser(fields);
           // alert("SUCCESS!! :-)\n\n" + JSON.stringify(fields, null, 4));
-          axios.post(`https://reqres.in/api/users`, { fields }).then(res => {
+          registerApi(
+            fields.userName,
+            fields.fullName,
+            fields.email,
+            fields.password
+          ).then(res => {
+            // useinfor = {
+            //   username: fields.userName,
+            //   fullname: fields.fullName,
+            //   email: fields.email,
+            //   password: fields.password
+            // }
             console.log(res);
-            console.log(res.data);
+            return <Redirect to={"/login"} />;
           });
         }}
         render={props => {
           const { handleBlur, handleChange, values, errors, touched } = props;
+
+          if (sessionStorage.getItem("userData")) {
+            return <Redirect to={"/"} />;
+          }
           return (
             <Form className="register_form">
               <h1>Register</h1>
-              {console.log(errors, touched)}
+              {/* {console.log(errors, touched)} */}
               <InputField
                 label="User Name"
                 name="userName"
@@ -147,9 +165,9 @@ const Register = () => {
               />
 
               <div className="form-group">
-                <Button color="primary">Login</Button>{" "}
+                <Button color="primary">Register</Button>{" "}
                 <Button type="reset" color="secondary">
-                  Register
+                  Login
                 </Button>
               </div>
             </Form>

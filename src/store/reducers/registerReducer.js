@@ -7,7 +7,11 @@ const initialState = {
 function userRegister(state = initialState, action) {
   switch (action.type) {
     case "ADD_USER":
-      return action.payload;
+      return {
+        ...state,
+        payload: action.payload
+      };
+
     default:
       return state;
   }

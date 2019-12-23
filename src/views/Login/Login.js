@@ -5,11 +5,22 @@ import { Button } from "reactstrap";
 import "./login.scss";
 import InputField from "../../components/FormFields/InputField.js";
 import { loginApi } from "./loginApi";
-import { withRouter } from "react-router-dom";
-import NavBar from "../../components/Navbar/Navbar";
+import { Redirect } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { userAction } from "../../store/reducers/userReducer";
 
 const Login = ({ history }) => {
+  const [user, setUser] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+
+  const [loggedin, setLoggedin] = useState({ isLoggedIn: false });
+
+  const loginUserDispath = useDispatch();
+  const loginUser = userParam => {
+    // console.log(userParam);
+    loginUserDispath(userAction(userParam));
+  };
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -24,17 +35,30 @@ const Login = ({ history }) => {
     onSubmit: values => {
       loginApi(values.email, values.password)
         .then(res => {
-          history.push("/home");
+          const userinfo = {
+            email: values.email,
+            password: values.password,
+            token: res.token
+          };
+          console.log(userinfo);
+          loginUser(userinfo);
+          // sessionStorage.setItem("userData", JSON.stringify(res.token));
+          setLoggedin({ isLoggedIn: true });
+          return <Redirect to={"/dashboard"} />;
         })
         .catch(err => {
-          setError(err.response.data.error);
+          //console.log(err.response.data.error);
+          //setError(err.response.data.error);
         });
     }
   });
 
+  if (sessionStorage.getItem("userData") || loggedin.isLoggedIn) {
+    return <Redirect to={"/"} />;
+  }
+
   return (
     <div className="login_container">
-      <NavBar />
       <form onSubmit={formik.handleSubmit} className="login_form">
         <h1>Login Form</h1>
         <InputField
@@ -72,4 +96,4 @@ const Login = ({ history }) => {
   );
 };
 
-export default withRouter(Login);
+export default Login;
