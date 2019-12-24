@@ -1,0 +1,45 @@
+.firstRowCards {
+  margin-top: 20px;
+  .card-stats {
+    background: #27293d;
+    color: #fff;
+    .firstCircle {
+      background: #ff8d72;
+    }
+    .secondCircle {
+      background: #e14eca;
+    }
+    .thirdCircle {
+      background: #1d8cf8;
+    }
+    .fourthCircle {
+      background: #fd5d93;
+    }
+    .card-category {
+      font-size: 12px;
+    }
+    .card-title {
+      font-size: 24px;
+    }
+  }
+
+  .icon-circle {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background: #ffe;
+    position: relative;
+    top: 0;
+    left: 0;
+    svg {
+      height: 32px;
+      width: 32px;
+      border-radius: 50%;
+
+      position: relative;
+      top: 10px;
+      left: 10px;
+      color: fff;
+    }
+  }
+}
