@@ -2,7 +2,8 @@ import React from "react";
 import "./dashboard.scss";
 
 import CardsRowOne from "../../components/Dashboard/CardsRowOne/Cards";
-import TasksComponent from "../../components/Dashboard/Tasks/Tasks";
+import Tasks from "../../components/Dashboard/Tasks/Tasks";
+import Managment from "../../components/Dashboard/Managment/Managment";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
@@ -50,9 +51,11 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="col-lg-12 ">
-        <TasksComponent />
-        <div className="col-lg-7">right</div>
+      <div className="col-lg-12 secondrowTasks">
+        <div className="row">
+          <Tasks />
+          <Managment />
+        </div>
       </div>
     </div>
   );

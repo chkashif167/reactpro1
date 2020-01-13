@@ -12,7 +12,7 @@ const CardsRowOne = ({
   bigCircleClass
 }) => {
   return (
-    <div className="col-lg-3 col-md-6">
+    <div className="col-lg-3 col-md-6 firstCardsSection">
       <div className="card card-stats">
         <div className="card-body">
           <div className="row">

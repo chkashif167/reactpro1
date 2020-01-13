@@ -1,0 +1,21 @@
+.tasksSections {
+  background: #27293d;
+  padding-bottom: 15px;
+  .card-header {
+    padding: 10px 10px 10px 0;
+    border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
+    h6 {
+      margin-right: 20px;
+      font-size: 15px;
+    }
+    .date {
+      font-size: 11px;
+    }
+    .settingButton {
+      float: right;
+      i {
+        color: #9a9a9a;
+      }
+    }
+  }
+}

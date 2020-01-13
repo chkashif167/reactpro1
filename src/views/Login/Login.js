@@ -42,9 +42,10 @@ const Login = ({ history }) => {
           };
           console.log(userinfo);
           loginUser(userinfo);
-          // sessionStorage.setItem("userData", JSON.stringify(res.token));
-          setLoggedin({ isLoggedIn: true });
-          return <Redirect to={"/dashboard"} />;
+          localStorage.setItem("_token", JSON.stringify(res.token));
+          //setLoggedin({ isLoggedIn: true });
+          //return <Redirect to={"/dashboard"} />;
+          console.log("_Token", localStorage.getItem("_token"));
         })
         .catch(err => {
           //console.log(err.response.data.error);

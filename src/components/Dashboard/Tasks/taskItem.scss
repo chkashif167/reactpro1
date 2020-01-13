@@ -1,0 +1,68 @@
+.TaskItem {
+  padding: 10px 0 0 0;
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
+  /////////////////////////////////////////////// First Column
+  .checkboxdiv {
+    text-align: center;
+    display: flex;
+    div.row {
+      width: 100%;
+      flex: auto;
+    }
+    label {
+      margin: auto;
+      input {
+        margin: auto;
+        display: none;
+      }
+      span {
+        // height: 20px;
+        // width: 20px;
+        // display: inline-block;
+        position: relative;
+      }
+      span::before {
+        content: " ";
+        height: 20px;
+        width: 20px;
+        border: 1px solid #fff;
+        display: inline-block;
+        position: relative;
+      }
+      input[type="checkbox"]:checked + span:before {
+        background-color: #e14eca;
+        border: none;
+      }
+      input[type="checkbox"]:checked + span:after {
+        content: "\f00c";
+        font-family: "FontAwesome";
+        position: absolute;
+        top: -5px;
+        display: block;
+        left: 2px;
+      }
+    }
+  }
+
+  /////////////////////////////////////////////  2nd column
+  p {
+    color: #6c757d;
+    font-size: 14px;
+    line-height: 17px;
+  }
+  h6 {
+    width: 100%;
+  }
+  /////////////////////////////////////////////// 3rd column
+  .actionButtons {
+    text-align: center;
+  }
+  .actionButtons .row {
+    flex: auto;
+    height: 100%;
+  }
+  .actionButtons i {
+    margin: auto;
+    color: #9a9a9a;
+  }
+}
