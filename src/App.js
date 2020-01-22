@@ -8,6 +8,7 @@ import "./app.scss";
 const App = () => {
   return (
     <div className="App">
+      {console.log("_Token", localStorage.getItem("_token"))}
       <Router>
         <Navbar />
         <Routers />

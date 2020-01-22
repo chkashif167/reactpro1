@@ -54,9 +54,9 @@ const Login = ({ history }) => {
     }
   });
 
-  if (sessionStorage.getItem("userData") || loggedin.isLoggedIn) {
-    return <Redirect to={"/"} />;
-  }
+  // if (sessionStorage.getItem("userData") || loggedin.isLoggedIn) {
+  //   return <Redirect to={"/"} />;
+  // }
 
   return (
     <div className="login_container">
