@@ -11,6 +11,6 @@ export const registerApi = (username, fullname, email, password) => {
     .then(res => {
       console.log(res);
       console.log(res.data);
-      //return res.data;
+      return res.data;
     });
 };
