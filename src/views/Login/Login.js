@@ -7,18 +7,19 @@ import InputField from "../../components/FormFields/InputField.js";
 import { loginApi } from "./loginApi";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { userAction } from "../../store/reducers/userReducer";
+import { authAction } from "../../store/reducers/actions/authActions";
 
 const Login = ({ history }) => {
   const [user, setUser] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const [loggedin, setLoggedin] = useState({ isLoggedIn: false });
 
   const loginUserDispath = useDispatch();
   const loginUser = userParam => {
     // console.log(userParam);
-    loginUserDispath(userAction(userParam));
+    loginUserDispath(authAction(userParam));
   };
 
   const formik = useFormik({
@@ -41,15 +42,17 @@ const Login = ({ history }) => {
             token: res.token
           };
           console.log(userinfo);
-          loginUser(userinfo);
+          loginUser("User Info", userinfo);
           localStorage.setItem("_token", JSON.stringify(res.token));
           //setLoggedin({ isLoggedIn: true });
-          //return <Redirect to={"/dashboard"} />;
+          setSuccess(res.message);
+          return <Redirect to={"/dashboard"} />;
           console.log("_Token", localStorage.getItem("_token"));
+          //console.log("sdafasdfasdfsad", res);
         })
         .catch(err => {
-          //console.log(err.response.data.error);
-          //setError(err.response.data.error);
+          console.log("adfs", err.response.data);
+          setError(err.response.data.message);
         });
     }
   });
@@ -93,6 +96,8 @@ const Login = ({ history }) => {
 
         <Button color="primary">Login</Button>
       </form>
+      {error}
+      {success}
     </div>
   );
 };

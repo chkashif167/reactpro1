@@ -65,13 +65,7 @@ const Register = () => {
             fields.email,
             fields.password
           ).then(res => {
-            // useinfor = {
-            //   username: fields.userName,
-            //   fullname: fields.fullName,
-            //   email: fields.email,
-            //   password: fields.password
-            // }
-            console.log(res);
+            console.log("adsfsd", res);
             return <Redirect to={"/login"} />;
           });
         }}
