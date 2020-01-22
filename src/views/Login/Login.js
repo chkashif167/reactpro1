@@ -7,7 +7,10 @@ import InputField from "../../components/FormFields/InputField.js";
 import { loginApi } from "./loginApi";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { authAction } from "../../store/reducers/actions/authActions";
+import {
+  authAction,
+  loginUser
+} from "../../store/reducers/actions/authActions";
 
 const Login = ({ history }) => {
   const [user, setUser] = useState({ email: "", password: "" });
@@ -16,11 +19,7 @@ const Login = ({ history }) => {
 
   const [loggedin, setLoggedin] = useState({ isLoggedIn: false });
 
-  const loginUserDispath = useDispatch();
-  const loginUser = userParam => {
-    // console.log(userParam);
-    loginUserDispath(authAction(userParam));
-  };
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -34,6 +33,8 @@ const Login = ({ history }) => {
       password: Yup.string().required("Password is required")
     }),
     onSubmit: values => {
+      setError("");
+      setSuccess("");
       loginApi(values.email, values.password)
         .then(res => {
           const userinfo = {
@@ -41,17 +42,16 @@ const Login = ({ history }) => {
             password: values.password,
             token: res.token
           };
-          console.log(userinfo);
-          loginUser("User Info", userinfo);
+          dispatch(loginUser(userinfo));
           localStorage.setItem("_token", JSON.stringify(res.token));
           //setLoggedin({ isLoggedIn: true });
+          console.log("response", res);
           setSuccess(res.message);
-          return <Redirect to={"/dashboard"} />;
+          history.push("/Dashboard");
           console.log("_Token", localStorage.getItem("_token"));
-          //console.log("sdafasdfasdfsad", res);
         })
         .catch(err => {
-          console.log("adfs", err.response.data);
+          console.log("error", err);
           setError(err.response.data.message);
         });
     }
@@ -60,7 +60,7 @@ const Login = ({ history }) => {
   // if (sessionStorage.getItem("userData") || loggedin.isLoggedIn) {
   //   return <Redirect to={"/"} />;
   // }
-
+  console.log("sucess", success);
   return (
     <div className="login_container">
       <form onSubmit={formik.handleSubmit} className="login_form">
@@ -95,9 +95,9 @@ const Login = ({ history }) => {
         />
 
         <Button color="primary">Login</Button>
+        {error}
+        {success}
       </form>
-      {error}
-      {success}
     </div>
   );
 };
