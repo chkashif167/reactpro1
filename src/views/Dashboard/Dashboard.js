@@ -10,8 +10,16 @@ import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import { faAppleAlt } from "@fortawesome/free-solid-svg-icons";
 import { faAddressCard } from "@fortawesome/free-solid-svg-icons";
 import { faAtom } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 const Dashboard = () => {
+  const { isLoggedIn } = useSelector(state => ({
+    isLoggedIn: state.Auth.isLoggedIn
+  }));
+  if (!isLoggedIn || !localStorage.getItem("_token")) {
+    return <Redirect to={"/"} />;
+  }
   return (
     <div className="dashboard_container">
       <div className="col-lg-12 firstRowCards">

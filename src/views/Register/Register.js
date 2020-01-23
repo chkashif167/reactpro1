@@ -3,14 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 
-import {
-  Formik,
-  Field,
-  Form,
-  ErrorMessage,
-  handleBlur,
-  handleChange
-} from "formik";
+import { Formik, Form } from "formik";
 import { Button, FormGroup, Label, Input, Container, Col } from "reactstrap";
 import * as Yup from "yup";
 import InputField from "../../components/FormFields/InputField.js";
