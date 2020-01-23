@@ -8,14 +8,14 @@ import { Redirect } from "react-router-dom";
 import { logoutUser } from "../../store/reducers/actions/authActions";
 
 const NavBar = (props, { history }) => {
-  const { isLoggedIn } = useSelector(state => ({
-    isLoggedIn: state.Auth.isLoggedIn
-  }));
-
   const dispatch = useDispatch();
   const onLogout = e => {
     dispatch(logoutUser());
   };
+
+  const { isLoggedIn } = useSelector(state => ({
+    isLoggedIn: state.Auth.isLoggedIn
+  }));
   console.log("top navigation", isLoggedIn);
 
   return (
