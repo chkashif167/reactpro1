@@ -1,12 +1,23 @@
-import React, { Component } from "react";
+import React from "react";
 import { Navbar, Nav } from "reactstrap";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./navbar.scss";
-import { useSelector } from "react-redux";
-const NavBar = props => {
-  useSelector(state => {
-    console.log("state", state);
-  });
+import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import { Redirect } from "react-router-dom";
+import { logoutUser } from "../../store/reducers/actions/authActions";
+
+const NavBar = (props, { history }) => {
+  const { isLoggedIn } = useSelector(state => ({
+    isLoggedIn: state.Auth.isLoggedIn
+  }));
+
+  const dispatch = useDispatch();
+  const onLogout = e => {
+    dispatch(logoutUser());
+  };
+  console.log("top navigation", isLoggedIn);
+
   return (
     <div className="header_navigation">
       <Navbar className="navbarLinks" color="light" light expand="md">
@@ -16,23 +27,38 @@ const NavBar = props => {
 
         <Nav className="ml-auto" navbar>
           <ul className="navLinks">
-            <NavLink className="home" to="/" name="Home" />
-            {/* {sessionStorage.getItem("userData") && ( */}
-            <NavLink className="dashboard" to="/dashboard" name="Dashboard" />
-            {/* )} */}
-
-            {/* {!sessionStorage.getItem("userData") && ( */}
             <>
-              <li className="login">
+              <li className="home">
                 <i className="icon"></i>
-                <Link to="/login">Login</Link>
-              </li>
-              <li className="register">
-                <i className="icon"></i>
-                <Link to="/register">Register</Link>
+                <Link to="/">Home</Link>
               </li>
             </>
-            {/* )} */}
+            {console.log("top navi ", isLoggedIn)}
+            {isLoggedIn || localStorage.getItem("_token") ? (
+              <>
+                <li className="dashboard">
+                  <i className="icon"></i>
+                  <Link to="/dashboard">Dashboard</Link>
+                </li>
+                <li className="logout">
+                  <i className="icon"></i>
+                  <Link onClick={onLogout} to="/logout">
+                    LogOut
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="login">
+                  <i className="icon"></i>
+                  <Link to="/login">Login</Link>
+                </li>
+                <li className="register">
+                  <i className="icon"></i>
+                  <Link to="/register">Register</Link>
+                </li>
+              </>
+            )}
           </ul>
         </Nav>
       </Navbar>

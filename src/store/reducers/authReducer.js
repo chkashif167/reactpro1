@@ -1,7 +1,8 @@
 import {
   SET_LOGIN_PENDING,
   SET_LOGIN_STATUS,
-  SET_LOGIN_ERROR
+  SET_LOGIN_ERROR,
+  SET_USER_LOGOUT
 } from "./actions/authActions";
 
 const initialState = {
@@ -18,6 +19,11 @@ function auth(state = initialState, action) {
         ...state,
         user: action.payload,
         isLoggedIn: true
+      };
+    case SET_USER_LOGOUT:
+      return {
+        ...state,
+        isLoggedIn: false
       };
     default:
       return state;

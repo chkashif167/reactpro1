@@ -17,9 +17,11 @@ const Login = ({ history }) => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const [loggedin, setLoggedin] = useState({ isLoggedIn: false });
-
   const dispatch = useDispatch();
+
+  const { isLoggedIn } = useSelector(state => ({
+    isLoggedIn: state.Auth.isLoggedIn
+  }));
 
   const formik = useFormik({
     initialValues: {
@@ -44,23 +46,19 @@ const Login = ({ history }) => {
           };
           dispatch(loginUser(userinfo));
           localStorage.setItem("_token", JSON.stringify(res.token));
-          //setLoggedin({ isLoggedIn: true });
-          console.log("response", res);
           setSuccess(res.message);
           history.push("/Dashboard");
-          console.log("_Token", localStorage.getItem("_token"));
         })
         .catch(err => {
-          console.log("error", err);
           setError(err.response.data.message);
         });
     }
   });
 
-  // if (sessionStorage.getItem("userData") || loggedin.isLoggedIn) {
-  //   return <Redirect to={"/"} />;
-  // }
-  console.log("sucess", success);
+  if (isLoggedIn || localStorage.getItem("_token")) {
+    return <Redirect to={"/"} />;
+  }
+
   return (
     <div className="login_container">
       <form onSubmit={formik.handleSubmit} className="login_form">
