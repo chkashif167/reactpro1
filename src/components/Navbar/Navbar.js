@@ -9,9 +9,6 @@ import { logoutUser } from "../../store/reducers/actions/authActions";
 
 const NavBar = (props, { history }) => {
   const dispatch = useDispatch();
-  const onLogout = e => {
-    dispatch(logoutUser());
-  };
 
   const { isLoggedIn } = useSelector(state => ({
     isLoggedIn: state.Auth.isLoggedIn
@@ -42,9 +39,7 @@ const NavBar = (props, { history }) => {
                 </li>
                 <li className="logout">
                   <i className="icon"></i>
-                  <Link onClick={onLogout} to="/logout">
-                    LogOut
-                  </Link>
+                  <Link to="/logout">LogOut</Link>
                 </li>
               </>
             ) : (

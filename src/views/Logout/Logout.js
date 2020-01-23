@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../store/reducers/actions/authActions";
 import { Redirect } from "react-router-dom";
 
 const LogOut = () => {
+  useEffect(() => {}, []);
+  const dispatch = useDispatch();
+  dispatch(logoutUser());
+
   const { isLoggedIn } = useSelector(state => ({
     isLoggedIn: state.Auth.isLoggedIn
   }));
-
   console.log("log out page", isLoggedIn);
 
   localStorage.clear(isLoggedIn);
