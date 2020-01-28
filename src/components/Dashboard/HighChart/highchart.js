@@ -4,7 +4,7 @@ import HighchartsReact from "highcharts-react-official";
 
 const options = {
   chart: {
-    type: "spline"
+    type: "scatter"
   },
   title: {
     text: "Statistics"
@@ -16,7 +16,7 @@ const options = {
   ]
 };
 
-const DD = () => {
+const Highchart = () => {
   return (
     <div>
       adfasd
@@ -25,4 +25,4 @@ const DD = () => {
   );
 };
 
-export default DD;
+export default Highchart;
