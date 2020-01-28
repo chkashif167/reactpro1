@@ -4,6 +4,7 @@ import "./dashboard.scss";
 import CardsRowOne from "../../components/Dashboard/CardsRowOne/Cards";
 import Tasks from "../../components/Dashboard/Tasks/Tasks";
 import Managment from "../../components/Dashboard/Managment/Managment";
+import DD from "../../components/Dashboard/HighChart/highchart";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
@@ -17,11 +18,16 @@ const Dashboard = () => {
   const { isLoggedIn } = useSelector(state => ({
     isLoggedIn: state.Auth.isLoggedIn
   }));
-  if (!isLoggedIn || !localStorage.getItem("_token")) {
+
+  // console.log("dashboard page isloggedin", isLoggedIn);
+  // console.log("dashboard page _token", localStorage.getItem("_token"));
+
+  if (!localStorage.getItem("_token" || !isLoggedIn)) {
     return <Redirect to={"/"} />;
   }
   return (
     <div className="dashboard_container">
+      <DD />
       <div className="col-lg-12 firstRowCards">
         <div className="row">
           <CardsRowOne

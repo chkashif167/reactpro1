@@ -16,6 +16,7 @@ const Login = ({ history }) => {
   const [user, setUser] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [spinnerloading, setSpinnerloading] = useState({ loading: false });
 
   const dispatch = useDispatch();
 
@@ -37,8 +38,10 @@ const Login = ({ history }) => {
     onSubmit: values => {
       setError("");
       setSuccess("");
+      setSpinnerloading({ loading: true });
       loginApi(values.email, values.password)
         .then(res => {
+          setSpinnerloading({ loading: false });
           const userinfo = {
             email: values.email,
             password: values.password,
@@ -58,7 +61,7 @@ const Login = ({ history }) => {
   if (isLoggedIn || localStorage.getItem("_token")) {
     return <Redirect to={"/"} />;
   }
-
+  console.log("spinnerloading", spinnerloading);
   return (
     <div className="login_container">
       <form onSubmit={formik.handleSubmit} className="login_form">
@@ -91,8 +94,10 @@ const Login = ({ history }) => {
           iconClass="password"
           placeholder="Password "
         />
-
-        <Button color="primary">Login</Button>
+        <Button color="primary" disabled={spinnerloading.loading}>
+          {spinnerloading.loading && <div> Loading</div>}
+          {!spinnerloading.loading && <div> Login</div>}
+        </Button>
         {error}
         {success}
       </form>
