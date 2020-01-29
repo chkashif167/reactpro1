@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import "font-awesome/css/font-awesome.min.css";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
+import "react-toastify/dist/ReactToastify.css";
 import App from "./App";
 import "./index.css";
 

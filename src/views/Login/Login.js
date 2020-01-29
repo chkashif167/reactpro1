@@ -11,6 +11,7 @@ import {
   authAction,
   loginUser
 } from "../../store/reducers/actions/authActions";
+import { ToastContainer, toast } from "react-toastify";
 
 const Login = ({ history }) => {
   const [user, setUser] = useState({ email: "", password: "" });
@@ -23,6 +24,10 @@ const Login = ({ history }) => {
   const { isLoggedIn } = useSelector(state => ({
     isLoggedIn: state.Auth.isLoggedIn
   }));
+
+  function triggerSuccess() {
+    toast.success("Wow 🚀");
+  }
 
   const formik = useFormik({
     initialValues: {
@@ -50,6 +55,7 @@ const Login = ({ history }) => {
           dispatch(loginUser(userinfo));
           localStorage.setItem("_token", JSON.stringify(res.token));
           setSuccess(res.message);
+          triggerSuccess();
           history.push("/Dashboard");
         })
         .catch(err => {
@@ -64,6 +70,7 @@ const Login = ({ history }) => {
   console.log("spinnerloading", spinnerloading);
   return (
     <div className="login_container">
+      <ToastContainer />
       <form onSubmit={formik.handleSubmit} className="login_form">
         <h1>Login Form</h1>
         <InputField

@@ -13,11 +13,22 @@ import {
 } from "reactstrap";
 import "./home.scss";
 import NavBar from "../../components/Navbar/Navbar";
-
-class Home extends Component {
-  render() {
-    return <div className="home">Home</div>;
-  }
+import { ToastContainer, toast } from "react-toastify";
+import confirm from "reactstrap-confirm";
+function triggerSuccess() {
+  toast.success("Wow 🚀");
 }
+
+let result = confirm();
+console.log("dddddddddddddddd", result);
+
+const Home = () => {
+  return (
+    <div className="home">
+      <button onClick={triggerSuccess}>Trigger Success</button>
+      <ToastContainer /> Home
+    </div>
+  );
+};
 
 export default Home;
