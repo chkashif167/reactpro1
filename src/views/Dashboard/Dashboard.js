@@ -23,7 +23,7 @@ const Dashboard = () => {
   // console.log("dashboard page _token", localStorage.getItem("_token"));
 
   if (!localStorage.getItem("_token" || !isLoggedIn)) {
-    return <Redirect to={"/"} />;
+    return <Redirect to={"/login"} />;
   }
   return (
     <div className="dashboard_container">

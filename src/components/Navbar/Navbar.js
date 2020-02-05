@@ -1,22 +1,31 @@
-import React from "react";
-import { Navbar, Nav } from "reactstrap";
+import React, { useState } from "react";
+import { Navbar, Nav, Button } from "reactstrap";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./navbar.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
+
 import { Redirect } from "react-router-dom";
 import { logoutUser } from "../../store/reducers/actions/authActions";
+import confirm from "reactstrap-confirm";
+import LogOut from "../../views/Logout/Logout";
 
-const NavBar = (props, { history }) => {
+const NavBar = props => {
   const dispatch = useDispatch();
 
   const { isLoggedIn } = useSelector(state => ({
     isLoggedIn: state.Auth.isLoggedIn
   }));
-  console.log("top navigation", isLoggedIn);
+
+  const [isLogedOut, setIsLogedOut] = useState(false);
+
+  const onCancelLogoutButton = () => {
+    setIsLogedOut(false);
+  };
 
   return (
     <div className="header_navigation">
+      {isLogedOut && <LogOut onCancel={onCancelLogoutButton} />}
+
       <Navbar className="navbarLinks" color="light" light expand="md">
         <h2 className="logo">
           <Link to="/">AdialaJee</Link>
@@ -31,7 +40,7 @@ const NavBar = (props, { history }) => {
               </li>
             </>
             {console.log("top navi ", isLoggedIn)}
-            {isLoggedIn || localStorage.getItem("_token") ? (
+            {isLogedOut || isLoggedIn || localStorage.getItem("_token") ? (
               <>
                 <li className="dashboard">
                   <i className="icon"></i>
@@ -39,7 +48,14 @@ const NavBar = (props, { history }) => {
                 </li>
                 <li className="logout">
                   <i className="icon"></i>
-                  <Link to="/logout">LogOut</Link>
+
+                  <Button
+                    onClick={() => {
+                      setIsLogedOut(true);
+                    }}
+                  >
+                    Logout
+                  </Button>
                 </li>
               </>
             ) : (

@@ -1,24 +1,42 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../store/reducers/actions/authActions";
-import { Redirect } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
+import ConfirmDialog from "../../components/ConfirmDialog/ConfirmDialog";
 
-const LogOut = () => {
-  useEffect(() => {}, []);
-  const dispatch = useDispatch();
-  dispatch(logoutUser());
+// this page view is not in use anymore
 
-  const { isLoggedIn } = useSelector(state => ({
-    isLoggedIn: state.Auth.isLoggedIn
-  }));
-  console.log("log out page", isLoggedIn);
+const LogOut = props => {
+  const { onCancel } = props;
 
-  localStorage.clear(isLoggedIn);
+  const onConfirmLogoutButton = () => {
+    localStorage.clear();
+    onCancel();
+    props.history.push("/");
+  };
+
   return (
     <div className="home">
-      <Redirect to={"/"} />; You are logged out from the app
+      <ConfirmDialog
+        bodyText="this is body text"
+        okButtonText="Confirm"
+        cancelButtonText="Cancel"
+        onCancleButtonClick={() => {
+          console.log("clickedon cancle");
+          onCancel();
+        }}
+        onOkButtonClick={() => {
+          console.log("clickedon ok");
+          onConfirmLogoutButton();
+        }}
+        modalTitle="This is modal Title"
+        modalToggle={() => {
+          console.log("clickedon toggle");
+        }}
+        modalOpen
+      />
     </div>
   );
 };
 
-export default LogOut;
+export default withRouter(LogOut);

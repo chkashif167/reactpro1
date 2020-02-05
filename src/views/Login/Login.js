@@ -26,7 +26,7 @@ const Login = ({ history }) => {
   }));
 
   function triggerSuccess() {
-    toast.success("Wow 🚀");
+    toast.success("login page 🚀");
   }
 
   const formik = useFormik({

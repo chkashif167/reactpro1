@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { render } from "react-dom";
 import {
   Button,
@@ -15,20 +15,10 @@ import "./home.scss";
 import NavBar from "../../components/Navbar/Navbar";
 import { ToastContainer, toast } from "react-toastify";
 import confirm from "reactstrap-confirm";
-function triggerSuccess() {
-  toast.success("Wow 🚀");
-}
-
-let result = confirm();
-console.log("dddddddddddddddd", result);
 
 const Home = () => {
-  return (
-    <div className="home">
-      <button onClick={triggerSuccess}>Trigger Success</button>
-      <ToastContainer /> Home
-    </div>
-  );
+  useEffect(() => {});
+  return <div className="home">Home</div>;
 };
 
 export default Home;
