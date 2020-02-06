@@ -6,25 +6,24 @@ import Home from "../../views/Home/Home";
 import Dashboard from "../../views/Dashboard/Dashboard";
 import Login from "../../views/Login/Login";
 import Register from "../../views/Register/Register";
-// import Form from "reactstrap/lib/Form";
 import Protected from "../Protected/Protected";
 import Logout from "../../views/Logout/Logout";
 import { ToastContainer, toast } from "react-toastify";
 
+import Shop from "../../views/Shop/Shop";
+
 const Routers = () => {
   return (
-    <>
-      <Switch>
-        <Route path="/" exact>
-          <Protected component={Home} />
-        </Route>
-        <Route path="/dashboard" exact component={Dashboard} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/register" component={Register} />
-        {/* <Route path="/logout" component={Logout} /> */}
-      </Switch>
-      <ToastContainer />
-    </>
+    <Fragment>
+      <Route path="/" exact>
+        <Protected component={Home} />
+      </Route>
+      <Route path="/shop" component={Shop} />
+      <Route path="/dashboard" component={Dashboard} />
+      <Route path="/login" component={Login} />
+      <Route path="/register" component={Register} />
+      <Route path="/logout" component={Logout} />
+    </Fragment>
   );
 };
 export default Routers;

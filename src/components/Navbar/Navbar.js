@@ -38,6 +38,10 @@ const NavBar = props => {
                 <i className="icon"></i>
                 <Link to="/">Home</Link>
               </li>
+              <li className="shop">
+                <i className="icon"></i>
+                <Link to="/shop">Shop</Link>
+              </li>
             </>
             {console.log("top navi ", isLoggedIn)}
             {isLogedOut || isLoggedIn || localStorage.getItem("_token") ? (
