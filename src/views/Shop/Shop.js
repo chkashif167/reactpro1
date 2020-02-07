@@ -6,7 +6,7 @@ import Basket from "../../components/Shop/Products/Basket";
 import "./shop.scss";
 // import Copyright from "./components/Copyright";
 
-class App extends Component {
+class Shop extends Component {
   constructor() {
     super();
     this.state = {
@@ -130,4 +130,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Shop;
