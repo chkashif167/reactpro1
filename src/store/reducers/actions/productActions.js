@@ -16,8 +16,8 @@ export const filterProducts = (products, size) => dispatch => {
       items:
         size === ""
           ? products
-          : products.filter(
-              a => a.availableSizes.indexOf(size.toUpperCase()) >= 0
+          : products.filter(a =>
+              a.availableSizes.indexOf(size.toUpperCase() >= 0)
             )
     }
   });

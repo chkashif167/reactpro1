@@ -32,7 +32,7 @@ class Filter extends Component {
               className="form-control"
               value={this.props.size}
               onChange={e =>
-                this.props.filterProducts(this.props.products, this.props.size)
+                this.props.filterProducts(this.props.products, e.target.value)
               }
             >
               <option value="">ALL</option>
