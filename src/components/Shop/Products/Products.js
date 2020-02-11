@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import util from "../../Shop/Products/util";
 import { connect } from "react-redux";
-import fetchProducts from "../../../store/reducers/actions/productActions";
+import { fetchProducts } from "../../../store/reducers/actions/productActions";
 class Products extends Component {
   componentWillMount() {
     this.props.fetchProducts();

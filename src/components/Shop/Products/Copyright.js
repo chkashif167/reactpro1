@@ -4,7 +4,7 @@ export default class Copyright extends Component {
     return (
       <div>
         <h4>IMPORTANT LINKS</h4>
-        <ul>
+        {/* <ul>
           <li>
             <a href="https://github.com/basir/ecommerce-shopping-cart">
               Download Source code{" "}
@@ -20,7 +20,7 @@ export default class Copyright extends Component {
               Learn React From Scratch
             </a>
           </li>
-        </ul>
+        </ul> */}
       </div>
     );
   }
