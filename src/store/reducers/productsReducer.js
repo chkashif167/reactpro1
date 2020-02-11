@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS } from "../reducers/actions/actionstypes/ProductsActionsTypes";
+import { FETCH_PRODUCTS } from "./actions/types";
 const initialState = { items: [] };
 
 function Prdocuts(state = initialState, action) {

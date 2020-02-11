@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS } from "./actionstypes/ProductsActionsTypes";
+import { FETCH_PRODUCTS } from "./types";
 const fetchProducts = () => dispatch => {
   fetch("https://jsonserverherokukn.herokuapp.com/products")
     .then(res => res.json())
