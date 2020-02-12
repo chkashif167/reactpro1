@@ -2,19 +2,19 @@ import React, { Component } from "react";
 import util from "../../Shop/Products/util";
 import { connect } from "react-redux";
 import { fetchProducts } from "../../../store/reducers/actions/productActions";
+import { addToCart } from "../../../store/reducers/actions/cartActions";
 class Products extends Component {
   componentWillMount() {
     this.props.fetchProducts();
   }
 
   render() {
-    console.log("products from the props", this.props.products);
     const productItems = this.props.products.map(product => (
       <div className="col-md-4" key={product.id}>
         <div className="thumbnail text-center">
           <a
             href={`#${product.id}`}
-            onClick={e => this.props.handleAddToCart(e, product)}
+            onClick={() => this.props.addToCart(this.props.cartItems, product)}
           >
             <img src={`products/${product.sku}_2.jpg`} alt={product.title} />
             <p>{product.title}</p>
@@ -22,7 +22,7 @@ class Products extends Component {
           <b>{util.formatCurrency(product.price)}</b>
           <button
             className="btn btn-primary"
-            onClick={e => this.props.handleAddToCart(e, product)}
+            onClick={() => this.props.addToCart(this.props.cartItems, product)}
           >
             Add to cart
           </button>
@@ -34,7 +34,8 @@ class Products extends Component {
   }
 }
 const mapStateToProps = state => ({
-  products: state.Prdocuts.items
+  products: state.Prdocuts.filteredItems,
+  cartItems: state.Cart.items
 });
 
-export default connect(mapStateToProps, { fetchProducts })(Products);
+export default connect(mapStateToProps, { fetchProducts, addToCart })(Products);

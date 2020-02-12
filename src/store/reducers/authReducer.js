@@ -12,7 +12,6 @@ const initialState = {
 };
 
 function auth(state = initialState, action) {
-  console.log("action", action);
   switch (action.type) {
     case SET_LOGIN_STATUS:
       return {

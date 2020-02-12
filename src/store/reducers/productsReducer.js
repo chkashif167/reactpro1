@@ -1,8 +1,11 @@
-import { FETCH_PRODUCTS, FILTER_PRODUCTS_BY_SIZE } from "./actions/types";
-const initialState = { items: [], filterItems: [], size: "" };
+import {
+  FETCH_PRODUCTS,
+  FILTER_PRODUCTS_BY_SIZE,
+  ORDER_PRODUCTS_BY_PRICE
+} from "./actions/types";
+const initialState = { items: [], filteredItems: [], size: "", sort: "" };
 
 function Prdocuts(state = initialState, action) {
-  console.log("product reducer action", action);
   switch (action.type) {
     case FETCH_PRODUCTS:
       return {
@@ -13,8 +16,15 @@ function Prdocuts(state = initialState, action) {
     case FILTER_PRODUCTS_BY_SIZE:
       return {
         ...state,
-        filterItems: action.payload.items,
+        filteredItems: action.payload.items,
         size: action.payload.size
+      };
+
+    case ORDER_PRODUCTS_BY_PRICE:
+      return {
+        ...state,
+        filteredItems: action.payload.items,
+        sort: action.payload.sort
       };
 
     default:

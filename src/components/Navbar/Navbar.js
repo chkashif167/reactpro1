@@ -43,7 +43,7 @@ const NavBar = props => {
                 <Link to="/shop">Shop</Link>
               </li>
             </>
-            {console.log("top navi ", isLoggedIn)}
+            {/* {console.log("top navi ", isLoggedIn)} */}
             {isLogedOut || isLoggedIn || localStorage.getItem("_token") ? (
               <>
                 <li className="dashboard">
