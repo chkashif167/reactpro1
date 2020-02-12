@@ -27,12 +27,17 @@ export const addToCart = (items, product) => dispatch => {
 
 export const removeFromCart = (items, product) => dispatch => {
   const cartItems = items.slice();
-  cartItems.filter(a => a.id !== product.id);
+  const filteredItems = cartItems.filter(a => {
+    // console.log("product.idddddddddddd", product.id);
+    // console.log("a.idddddddddddddd", a.id);
+    return a.id !== product.id;
+  });
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
+
   return dispatch({
     type: REMOVE_FROM_CART,
     payload: {
-      cartItems: cartItems
+      cartItems: filteredItems
     }
   });
 };

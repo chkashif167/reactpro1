@@ -19,11 +19,11 @@ function auth(state = initialState, action) {
         user: action.payload,
         isLoggedIn: true
       };
-    case SET_USER_LOGOUT:
-      return {
-        ...state,
-        isLoggedIn: false
-      };
+    // case SET_USER_LOGOUT:
+    //   return {
+    //     // ...state,
+    //     // isLoggedIn: false
+    //   };
     default:
       return state;
   }

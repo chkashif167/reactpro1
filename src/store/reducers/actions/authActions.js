@@ -20,5 +20,6 @@ const authLogoutAction = isLoggedIn => ({
 });
 
 export const logoutUser = () => dispatch => {
+  console.log("im am loginUser function");
   dispatch(authLogoutAction(false));
 };

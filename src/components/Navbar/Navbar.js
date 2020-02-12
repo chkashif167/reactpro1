@@ -17,7 +17,7 @@ const NavBar = props => {
   }));
 
   const [isLogedOut, setIsLogedOut] = useState(false);
-
+  console.log("is logedin ", isLoggedIn);
   const onCancelLogoutButton = () => {
     setIsLogedOut(false);
   };

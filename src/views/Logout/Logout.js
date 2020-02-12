@@ -8,11 +8,12 @@ import ConfirmDialog from "../../components/ConfirmDialog/ConfirmDialog";
 
 const LogOut = props => {
   const { onCancel } = props;
-
+  const dispatch = useDispatch();
   const onConfirmLogoutButton = () => {
     localStorage.clear();
     onCancel();
-    props.history.push("/");
+    dispatch(logoutUser());
+    props.history.push("/login");
   };
 
   return (
