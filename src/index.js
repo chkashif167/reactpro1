@@ -13,6 +13,7 @@ import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./store/rootReducer";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
+import * as serviceWorker from './serviceWorker'
 
 const store = createStore(
   rootReducer,
@@ -26,3 +27,7 @@ ReactDOM.render(
   </Provider>,
   rootElement
 );
+
+
+serviceWorker.register();
+console.log("envirnment", process.env.NODE_ENV)

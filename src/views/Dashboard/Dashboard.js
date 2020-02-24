@@ -4,7 +4,7 @@ import "./dashboard.scss";
 import CardsRowOne from "../../components/Dashboard/CardsRowOne/Cards";
 import Tasks from "../../components/Dashboard/Tasks/Tasks";
 import Managment from "../../components/Dashboard/Managment/Managment";
-import Highchart from "../../components/Dashboard/HighChart/Highchart";
+import Highchart from "../../components/Dashboard/HighChart/highchart";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
